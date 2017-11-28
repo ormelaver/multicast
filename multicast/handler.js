@@ -2,7 +2,6 @@
 const AWS = require("aws-sdk");
 const docClient = new AWS.DynamoDB.DocumentClient({region: "us-east-1"});
 const uuid = require("uuid/v1");
-const eventList = require("event_list");
 const utils = require("utils");
 
 
