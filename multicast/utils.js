@@ -4,6 +4,8 @@ const sqs = new AWS.SQS({region : 'us-east-1'});
 const eventList = require("event_list");
 const sns = new AWS.SNS();
 
+
+// *** Uncomment the code below to implement pulling from the queue and also sending the data ***
 // module.exports.Enqueue = function(event, context) {
 // 	console.log("ENQUEUE ENQUEUE ENQUEUE ENQUEUE");
 //   const params = {
@@ -51,6 +53,15 @@ const sns = new AWS.SNS();
 // 		}
 //  };
 
+// module.exports.getElementById = function(id) {
+//  var params = {
+//    TableName : "events",
+//    KeyConditionExpression: "id = :eventId",
+//    ExpressionAttributeValues: {
+//        ":eventId": id
+//    }
+//   };
+
 module.exports.publish = function(eventName, data) {
  	var params = {
   Message: data, /* required */
@@ -65,15 +76,6 @@ module.exports.publish = function(eventName, data) {
   		} 
 		});
  }
-
-module.exports.getElementById = function(id) {
- var params = {
-   TableName : "events",
-   KeyConditionExpression: "id = :eventId",
-   ExpressionAttributeValues: {
-       ":eventId": id
-   }
-  };
 
 
    docClient.query(params, function(err, data){
